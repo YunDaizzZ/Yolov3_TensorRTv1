@@ -265,7 +265,7 @@ bool onnxToTRTModel(const std::string& modelFile, const std::string& filename, I
     // trtModelStream: output buffer for the TensorRT model
     int verbosity = (int)nvinfer1::ILogger::Severity::kWARNING;
 
-    // 下面这句很重要！！！在TensorRT7.0中要确定batchsize（网上说的大概是这种意思吧，也没太看明白），网上代码大多用6.0写的不一样
+    // ！！！在TensorRT7.0中要确定batchsize（网上说的大概是这种意思吧，也没太看明白），网上代码大多用6.0写的不一样
     // 参考7.0下的sample里的xxxonnxmnist.cpp，且下面使用的是createNetworkV2()函数
     const auto explicitBatch = 1U << static_cast<uint32_t>(NetworkDefinitionCreationFlag::kEXPLICIT_BATCH);
 
