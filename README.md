@@ -1,2 +1,2 @@
 # Yolov3_TensorRTv1
-Yolov3的TensorRT实现，没有加cuda编程
+Yolov3的TensorRT实现，没有加cuda编程，并且batchsize固定为1
