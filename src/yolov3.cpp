@@ -286,6 +286,7 @@ bool onnxToTRTModel(const std::string& modelFile, const std::string& filename, I
 
     // 建立推理引擎
     builder->setMaxBatchSize(Yolo::BATCH_SIZE);
+    builder->setMaxWorkspaceSize(1 << 30);
     builder->setFp16Mode(true);
 
     cout << "start building engine" << endl;
