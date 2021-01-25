@@ -396,7 +396,7 @@ int main(int argc, char** argv) {
     float output1[outSize1];
     float output2[outSize2];
     float output3[outSize3];
-    float *prob = BULL;
+    float *prob = NULL;
 
     double fps = 0.0;
 
