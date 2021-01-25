@@ -396,7 +396,7 @@ int main(int argc, char** argv) {
     float output1[outSize1];
     float output2[outSize2];
     float output3[outSize3];
-    float *prob = new float[outSize1 + outSize2 + outSize3];
+    float *prob = BULL;
 
     double fps = 0.0;
 
@@ -426,6 +426,7 @@ int main(int argc, char** argv) {
         vector<Yolo::Detection> res;
         // res里bbox为xywh
         res = postProcess(prob, img.cols, img.rows);
+	delete[] prob;
 
         string predicted_class, label, score;
         for (size_t j = 0; j < res.size(); ++j) {
