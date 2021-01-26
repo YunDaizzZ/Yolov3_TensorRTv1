@@ -147,6 +147,7 @@ void nms(vector<Yolo::Detection> detections, vector<Yolo::Detection>& res, float
 
 vector<Yolo::Detection> postProcess(float* output, int img_width, int img_height) {
     vector<Yolo::Detection> detections;
+    vector<Yolo::Detection> res_tmp;
     vector<Yolo::Detection> res;
     int offset = 0; 
 
@@ -234,7 +235,12 @@ vector<Yolo::Detection> postProcess(float* output, int img_width, int img_height
     delete[]transposed_output;
 
     // 非极大抑制
-    nms(detections, res);
+    nms(detections, res_tmp);
+    for (size_t i = 0; i < res_tmp.size(); ++i) {
+        if (res_tmp[i].class_confidence * res_tmp[i].det_confidence > CONF_THRESH) {
+            res.push_back(res_tmp[i]);
+        }
+    }
 
     return res;
 }
