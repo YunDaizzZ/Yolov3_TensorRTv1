@@ -65,10 +65,10 @@ void correct_box(Mat& img, float bbox[4], vector<int>& tlbr) {
         t = t / r_h;
         b = b / r_h;
     }
-    tlbr.push_back(t);
-    tlbr.push_back(l);
-    tlbr.push_back(b);
-    tlbr.push_back(r);
+    tlbr.push_back(max(0, t));
+    tlbr.push_back(max(0, l));
+    tlbr.push_back(min(img.rows, b));
+    tlbr.push_back(min(img.cols, r));
 }
 
 bool cmp(const Yolo::Detection& a, const Yolo::Detection& b) {
