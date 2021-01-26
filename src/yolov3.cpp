@@ -21,7 +21,7 @@
 #define USE_FP16  // set USE_INT8 or USE_FP16 or USE_FP32
 #define DEVICE 0  // GPU id
 #define NMS_THRESH 0.4
-#define BBOX_CONF_THRESH 0.5
+#define CONF_THRESH 0.5
 
 using namespace nvinfer1;
 using namespace std;
@@ -118,7 +118,7 @@ void nms(vector<Yolo::Detection> detections, vector<Yolo::Detection>& res, float
     std::map<float, std::vector<Yolo::Detection>> m;
     int length = detections.size();
     for (int i = 0; i < length; ++i) {
-        if (detections[i].det_confidence <= BBOX_CONF_THRESH)
+        if (detections[i].det_confidence <= CONF_THRESH)
             continue;
         Yolo::Detection det;
         memcpy(&det, &detections[i], 7 * sizeof(float));
